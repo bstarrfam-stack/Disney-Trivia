@@ -106,4 +106,106 @@ function showFlashAnswer() {
 }
 
 // Shuffle helper
-function shuffleArray(arr
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Multiple choice mode
+function showMultipleChoice() {
+  const item = filteredData[currentIndex];
+  let options;
+
+  // Use custom choices if provided
+  if (item.choices && Array.isArray(item.choices)) {
+    options = item.choices.map(choice => ({
+      answer: choice,
+      isCorrect: choice === item.answer
+    }));
+  } else {
+    // Fallback: generate random wrong answers
+    const correct = item;
+    const randomWrong = triviaData
+      .filter(q => q !== correct)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3);
+
+    options = [
+      { answer: correct.answer, isCorrect: true },
+      ...randomWrong.map(q => ({ answer: q.answer, isCorrect: false }))
+    ];
+  }
+
+  const shuffled = shuffleArray(options);
+
+  mcContainer.innerHTML = "";
+  mcContainer.classList.remove("hidden");
+  answerEl.classList.add("hidden");
+
+  shuffled.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.className = "mc-option";
+    btn.textContent = opt.answer;
+
+    btn.addEventListener("click", () => {
+      if (opt.isCorrect) {
+        btn.classList.add("correct");
+      } else {
+        btn.classList.add("incorrect");
+      }
+    });
+
+    mcContainer.appendChild(btn);
+  });
+}
+
+// Event listeners
+revealBtn.addEventListener("click", () => {
+  if (mode === "flash") {
+    showFlashAnswer();
+  } else {
+    showMultipleChoice();
+  }
+});
+
+btnNext.addEventListener("click", () => {
+  if (!filteredData.length) return;
+  currentIndex = (currentIndex + 1) % filteredData.length;
+  renderCard();
+});
+
+btnPrev.addEventListener("click", () => {
+  if (!filteredData.length) return;
+  currentIndex = (currentIndex - 1 + filteredData.length) % filteredData.length;
+  renderCard();
+});
+
+btnRandom.addEventListener("click", () => {
+  if (!filteredData.length) return;
+  currentIndex = Math.floor(Math.random() * filteredData.length);
+  renderCard();
+});
+
+modeFlashBtn.addEventListener("click", () => {
+  mode = "flash";
+  modeFlashBtn.classList.add("active");
+  modeMcBtn.classList.remove("active");
+  renderCard();
+});
+
+modeMcBtn.addEventListener("click", () => {
+  mode = "mc";
+  modeMcBtn.classList.add("active");
+  modeFlashBtn.classList.remove("active");
+  renderCard();
+});
+
+categorySelect.addEventListener("change", setFilters);
+movieSelect.addEventListener("change", setFilters);
+
+// Start
+loadTrivia();
