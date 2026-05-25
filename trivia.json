@@ -40,5 +40,29 @@
     "answer": "Flounder",
     "choices": ["Scuttle", "Sebastian", "Flounder", "Guppy"],
     "category": "Characters"
-  }
+  },
+  {
+  "question": "In The Little Mermaid, what are the names of Ursula's pet eels?",
+  "answer": "Flotsam and Jetsam",
+  "choices": ["Simon and Garfunkel", "Flotsam and Jetsam", "Seals and Croft", "Salt and Pepper"],
+  "category": "Characters"
+  },
+{
+  "question": "Who are Hercules's two shapeshifting sidekicks?",
+  "answer": "Pain and Panic",
+  "choices": ["Feast and Famine", "Greed and Envy", "Fear and Loathing", "Pain and Panic"],
+  "category": "Characters"
+},
+{
+  "question": "In Mulan, what is the name of the red dragon sidekick?",
+  "answer": "Mushu",
+  "choices": ["Pascal", "Abu", "Mushu", "Bruni"],
+  "category": "Characters"
+},
+{
+  "question": "In the movie Bambi, what kind of animal is Thumper?",
+  "answer": "Rabbit",
+  "choices": ["Skunk", "Bird", "Raccoon", "Rabbit"],
+  "category": "Characters"
+}
 ]
