@@ -1,211 +1,213 @@
-let triviaData = [];
-let filteredData = [];
-let currentIndex = 0;
-let mode = "flash"; // "flash" or "mc"
+document.addEventListener("DOMContentLoaded", () => {
 
-// DOM elements
-const questionEl = document.getElementById("question");
-const answerEl = document.getElementById("flashcard-answer");
-const mcContainer = document.getElementById("mc-options");
-const revealBtn = document.getElementById("btn-reveal");
-const progressEl = document.getElementById("progress");
+  let triviaData = [];
+  let filteredData = [];
+  let currentIndex = 0;
+  let mode = "flash"; // "flash" or "mc"
 
-const categorySelect = document.getElementById("category");
-const movieSelect = document.getElementById("movie");
+  // DOM elements
+  const questionEl = document.getElementById("question");
+  const answerEl = document.getElementById("flashcard-answer");
+  const mcContainer = document.getElementById("mc-options");
+  const revealBtn = document.getElementById("btn-reveal");
+  const progressEl = document.getElementById("progress");
 
-const modeFlashBtn = document.getElementById("mode-flash");
-const modeMcBtn = document.getElementById("mode-mc");
+  const categorySelect = document.getElementById("category");
+  const movieSelect = document.getElementById("movie");
 
-const btnPrev = document.getElementById("btn-prev");
-const btnNext = document.getElementById("btn-next");
-const btnRandom = document.getElementById("btn-random");
+  const modeFlashBtn = document.getElementById("mode-flash");
+  const modeMcBtn = document.getElementById("mode-mc");
 
-// Load JSON
-async function loadTrivia() {
-  const res = await fetch("trivia.json");
-  triviaData = await res.json();
+  const btnPrev = document.getElementById("btn-prev");
+  const btnNext = document.getElementById("btn-next");
+  const btnRandom = document.getElementById("btn-random");
 
-  buildCategories();
-  buildMovies();
-  setFilters();
-}
+  // Load JSON
+  async function loadTrivia() {
+    const res = await fetch("trivia.json");
+    triviaData = await res.json();
 
-// Build category dropdown
-function buildCategories() {
-  const categories = new Set();
-  triviaData.forEach(q => {
-    if (q.category) categories.add(q.category);
-  });
-
-  categories.forEach(cat => {
-    const opt = document.createElement("option");
-    opt.value = cat;
-    opt.textContent = cat;
-    categorySelect.appendChild(opt);
-  });
-}
-
-// Build movie dropdown
-function buildMovies() {
-  const movies = new Set();
-  triviaData.forEach(q => {
-    if (q.movie) movies.add(q.movie);
-  });
-
-  movies.forEach(m => {
-    const opt = document.createElement("option");
-    opt.value = m;
-    opt.textContent = m;
-    movieSelect.appendChild(opt);
-  });
-}
-
-// Unified filter logic
-function setFilters() {
-  const selectedCategory = categorySelect.value;
-  const selectedMovie = movieSelect.value;
-
-  filteredData = triviaData.filter(q => {
-    const categoryMatch = selectedCategory === "all" || q.category === selectedCategory;
-    const movieMatch = selectedMovie === "all" || q.movie === selectedMovie;
-    return categoryMatch && movieMatch;
-  });
-
-  currentIndex = 0;
-  renderCard();
-}
-
-// Render card
-function renderCard() {
-  if (!filteredData.length) {
-    questionEl.textContent = "No questions match your filters.";
-    answerEl.textContent = "";
-    mcContainer.innerHTML = "";
-    progressEl.textContent = "";
-    revealBtn.classList.add("hidden");
-    return;
+    buildCategories();
+    buildMovies();
+    setFilters();
   }
 
-  const item = filteredData[currentIndex];
-  questionEl.textContent = item.question;
-  answerEl.textContent = item.answer;
-
-  answerEl.classList.add("hidden");
-  mcContainer.classList.add("hidden");
-  mcContainer.innerHTML = "";
-
-  revealBtn.textContent = mode === "flash" ? "Reveal Answer" : "Show Options";
-  revealBtn.classList.remove("hidden");
-
-  progressEl.textContent = `Question ${currentIndex + 1} of ${filteredData.length}`;
-}
-
-// Flashcard reveal
-function showFlashAnswer() {
-  answerEl.classList.remove("hidden");
-}
-
-// Shuffle helper
-function shuffleArray(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-// Multiple choice mode
-function showMultipleChoice() {
-  const item = filteredData[currentIndex];
-  let options;
-
-  // Use custom choices if provided
-  if (item.choices && Array.isArray(item.choices)) {
-    options = item.choices.map(choice => ({
-      answer: choice,
-      isCorrect: choice === item.answer
-    }));
-  } else {
-    // Fallback: generate random wrong answers
-    const correct = item;
-    const randomWrong = triviaData
-      .filter(q => q !== correct)
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 3);
-
-    options = [
-      { answer: correct.answer, isCorrect: true },
-      ...randomWrong.map(q => ({ answer: q.answer, isCorrect: false }))
-    ];
-  }
-
-  const shuffled = shuffleArray(options);
-
-  mcContainer.innerHTML = "";
-  mcContainer.classList.remove("hidden");
-  answerEl.classList.add("hidden");
-
-  shuffled.forEach(opt => {
-    const btn = document.createElement("button");
-    btn.className = "mc-option";
-    btn.textContent = opt.answer;
-
-    btn.addEventListener("click", () => {
-      if (opt.isCorrect) {
-        btn.classList.add("correct");
-      } else {
-        btn.classList.add("incorrect");
-      }
+  // Build category dropdown
+  function buildCategories() {
+    const categories = new Set();
+    triviaData.forEach(q => {
+      if (q.category) categories.add(q.category);
     });
 
-    mcContainer.appendChild(btn);
-  });
-}
-
-// Event listeners
-revealBtn.addEventListener("click", () => {
-  if (mode === "flash") {
-    showFlashAnswer();
-  } else {
-    showMultipleChoice();
+    categories.forEach(cat => {
+      const opt = document.createElement("option");
+      opt.value = cat;
+      opt.textContent = cat;
+      categorySelect.appendChild(opt);
+    });
   }
+
+  // Build movie dropdown
+  function buildMovies() {
+    const movies = new Set();
+    triviaData.forEach(q => {
+      if (q.movie) movies.add(q.movie);
+    });
+
+    movies.forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = m;
+      opt.textContent = m;
+      movieSelect.appendChild(opt);
+    });
+  }
+
+  // Unified filter logic
+  function setFilters() {
+    const selectedCategory = categorySelect.value;
+    const selectedMovie = movieSelect.value;
+
+    filteredData = triviaData.filter(q => {
+      const categoryMatch = selectedCategory === "all" || q.category === selectedCategory;
+      const movieMatch = selectedMovie === "all" || q.movie === selectedMovie;
+      return categoryMatch && movieMatch;
+    });
+
+    currentIndex = 0;
+    renderCard();
+  }
+
+  // Render card
+  function renderCard() {
+    if (!filteredData.length) {
+      questionEl.textContent = "No questions match your filters.";
+      answerEl.textContent = "";
+      mcContainer.innerHTML = "";
+      progressEl.textContent = "";
+      revealBtn.classList.add("hidden");
+      return;
+    }
+
+    const item = filteredData[currentIndex];
+    questionEl.textContent = item.question;
+    answerEl.textContent = item.answer;
+
+    answerEl.classList.add("hidden");
+    mcContainer.classList.add("hidden");
+    mcContainer.innerHTML = "";
+
+    revealBtn.textContent = mode === "flash" ? "Reveal Answer" : "Show Options";
+    revealBtn.classList.remove("hidden");
+
+    progressEl.textContent = `Question ${currentIndex + 1} of ${filteredData.length}`;
+  }
+
+  // Flashcard reveal
+  function showFlashAnswer() {
+    answerEl.classList.remove("hidden");
+  }
+
+  // Shuffle helper
+  function shuffleArray(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  // Multiple choice mode
+  function showMultipleChoice() {
+    const item = filteredData[currentIndex];
+    let options;
+
+    if (item.choices && Array.isArray(item.choices)) {
+      options = item.choices.map(choice => ({
+        answer: choice,
+        isCorrect: choice === item.answer
+      }));
+    } else {
+      const correct = item;
+      const randomWrong = triviaData
+        .filter(q => q !== correct)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3);
+
+      options = [
+        { answer: correct.answer, isCorrect: true },
+        ...randomWrong.map(q => ({ answer: q.answer, isCorrect: false }))
+      ];
+    }
+
+    const shuffled = shuffleArray(options);
+
+    mcContainer.innerHTML = "";
+    mcContainer.classList.remove("hidden");
+    answerEl.classList.add("hidden");
+
+    shuffled.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.className = "mc-option";
+      btn.textContent = opt.answer;
+
+      btn.addEventListener("click", () => {
+        if (opt.isCorrect) {
+          btn.classList.add("correct");
+        } else {
+          btn.classList.add("incorrect");
+        }
+      });
+
+      mcContainer.appendChild(btn);
+    });
+  }
+
+  // Event listeners
+  revealBtn.addEventListener("click", () => {
+    if (mode === "flash") {
+      showFlashAnswer();
+    } else {
+      showMultipleChoice();
+    }
+  });
+
+  btnNext.addEventListener("click", () => {
+    if (!filteredData.length) return;
+    currentIndex = (currentIndex + 1) % filteredData.length;
+    renderCard();
+  });
+
+  btnPrev.addEventListener("click", () => {
+    if (!filteredData.length) return;
+    currentIndex = (currentIndex - 1 + filteredData.length) % filteredData.length;
+    renderCard();
+  });
+
+  btnRandom.addEventListener("click", () => {
+    if (!filteredData.length) return;
+    currentIndex = Math.floor(Math.random() * filteredData.length);
+    renderCard();
+  });
+
+  modeFlashBtn.addEventListener("click", () => {
+    mode = "flash";
+    modeFlashBtn.classList.add("active");
+    modeMcBtn.classList.remove("active");
+    renderCard();
+  });
+
+  modeMcBtn.addEventListener("click", () => {
+    mode = "mc";
+    modeMcBtn.classList.add("active");
+    modeFlashBtn.classList.remove("active");
+    renderCard();
+  });
+
+  categorySelect.addEventListener("change", setFilters);
+  movieSelect.addEventListener("change", setFilters);
+
+  // Start
+  loadTrivia();
+
 });
-
-btnNext.addEventListener("click", () => {
-  if (!filteredData.length) return;
-  currentIndex = (currentIndex + 1) % filteredData.length;
-  renderCard();
-});
-
-btnPrev.addEventListener("click", () => {
-  if (!filteredData.length) return;
-  currentIndex = (currentIndex - 1 + filteredData.length) % filteredData.length;
-  renderCard();
-});
-
-btnRandom.addEventListener("click", () => {
-  if (!filteredData.length) return;
-  currentIndex = Math.floor(Math.random() * filteredData.length);
-  renderCard();
-});
-
-modeFlashBtn.addEventListener("click", () => {
-  mode = "flash";
-  modeFlashBtn.classList.add("active");
-  modeMcBtn.classList.remove("active");
-  renderCard();
-});
-
-modeMcBtn.addEventListener("click", () => {
-  mode = "mc";
-  modeMcBtn.classList.add("active");
-  modeFlashBtn.classList.remove("active");
-  renderCard();
-});
-
-categorySelect.addEventListener("change", setFilters);
-movieSelect.addEventListener("change", setFilters);
-
-// Start
-loadTrivia();
