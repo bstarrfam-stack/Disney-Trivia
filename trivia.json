@@ -77,52 +77,52 @@
     "movie": "Bambi"
   },
   {
-  "question": "Which character describes herself as a 'full-time slave' to Hades?",
-  "answer": "Megara (Meg)",
-  "choices": ["Megara (Meg)", "Hera", "Medusa", "Amphitrite"],
-  "category": "Characters",
-  "movie": "Hercules"
+    "question": "Which character describes herself as a 'full-time slave' to Hades?",
+    "answer": "Megara (Meg)",
+    "choices": ["Megara (Meg)", "Hera", "Medusa", "Amphitrite"],
+    "category": "Characters",
+    "movie": "Hercules"
   },
   {
-  "question": "What is the name of Hercules's flying, winged horse companion?",
-  "answer": "Pegasus",
-  "choices": ["Bullseye", "Maximus", "Pegasus", "Khan"],
-  "category": "Characters",
-  "movie": "Hercules"
+    "question": "What is the name of Hercules's flying, winged horse companion?",
+    "answer": "Pegasus",
+    "choices": ["Bullseye", "Maximus", "Pegasus", "Khan"],
+    "category": "Characters",
+    "movie": "Hercules"
   },
   {
-  "question": "Who trains Hercules to become a hero?",
-  "answer": "Philoctetes (Phil)",
-  "choices": ["Zeus", "Hermes (Herm)", "Chiron (Kai)", "Philoctetes (Phil)"],
-  "category": "Characters",
-  "movie": "Hercules"
+    "question": "Who trains Hercules to become a hero?",
+    "answer": "Philoctetes (Phil)",
+    "choices": ["Zeus", "Hermes (Herm)", "Chiron (Kai)", "Philoctetes (Phil)"],
+    "category": "Characters",
+    "movie": "Hercules"
   },
   {
-  "question": "Which mythical creature does Hades use to fight a teenage Hercules in the gorge?",
-  "answer": "The Hydra",
-  "choices": ["The Minotaur", "The Hydra", "The Cerberus", "The Cyclops"],
-  "category": "Characters",
-  "movie": "Hercules"
+    "question": "Which mythical creature does Hades use to fight a teenage Hercules in the gorge?",
+    "answer": "The Hydra",
+    "choices": ["The Minotaur", "The Hydra", "The Cerberus", "The Cyclops"],
+    "category": "Characters",
+    "movie": "Hercules"
   },
   {
-  "question": "What are the names of Hercules's adoptive, human parents?",
-  "answer": "Amphitryon and Alcmene",
-  "choices": ["Hector and Andromache", "Orpheus and Eurydice", "Amphitryon and Alcmene", "Paris and Helen"],
-  "category": "Characters",
-  "movie": "Hercules"
+    "question": "What are the names of Hercules's adoptive, human parents?",
+    "answer": "Amphitryon and Alcmene",
+    "choices": ["Hector and Andromache", "Orpheus and Eurydice", "Amphitryon and Alcmene", "Paris and Helen"],
+    "category": "Characters",
+    "movie": "Hercules"
   },
   {
-  "question": "Who are the five visual narrators that sing the movie's opening songs?",
-  "answer": "The Muses",
-  "choices": ["The Graces", "The Fates", "The Harpies", "The Muses"],
-  "category": "Characters",
-  "movie": "Hercules"
+    "question": "Who are the five visual narrators that sing the movie's opening songs?",
+    "answer": "The Muses",
+    "choices": ["The Graces", "The Fates", "The Harpies", "The Muses"],
+    "category": "Characters",
+    "movie": "Hercules"
   },
   {
-  "question": "What historical figure is depicted on the vase that Hercules accidentally smashes in Phil's hut?",
-  "answer": "Achilles",
-  "choices": ["Perseus", "Achilles", "Agamemnon", "Odysseus"],
-  "category": "Miscellaneous",
-  "movie": "Hercules"
+    "question": "What historical figure is depicted on the vase that Hercules accidentally smashes in Phil's hut?",
+    "answer": "Achilles",
+    "choices": ["Perseus", "Achilles", "Agamemnon", "Odysseus"],
+    "category": "Miscellaneous",
+    "movie": "Hercules"
   }
 ]
