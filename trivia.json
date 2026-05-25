@@ -2,32 +2,37 @@
   {
     "question": "In what country is the kingdom of Arendelle, from Frozen, inspired by?",
     "answer": "Norway",
-    "Choices": ["Sweden", "Iceland", "Norway", "Hawaii"],
+    "choices": ["Sweden", "Iceland", "Norway", "Hawaii"],
     "category": "Geography"
   },
   {
     "question": "What U.S. state is the setting for Lilo & Stitch?",
     "answer": "Hawaii",
+    "choices": ["California", "Hawaii", "New York", "Florida"],
     "category": "Geography"
   },
   {
     "question": "Which real-world city inspired the design of Ratatouille's setting?",
-    "answer": "Paris, France",
+    "answer": "Paris",
+    "choices": ["Paris", "Florence", "Beijing", "London"],
     "category": "Geography"
   },
   {
     "question": "Which Disney Princess movie is set in New Orleans?",
     "answer": "The Princess and the Frog",
+    "choices": ["Sleeping Beauty", "Brave", "The Princess and the Frog", "Tangled"],
     "category": "Geography"
   },
   {
     "question": "Which Asian country is the setting for Mulan?",
     "answer": "China",
+    "choices": ["South Korea", "Vietnam", "Japan", "China"],
     "category": "Geography"
   },
   {
     "question": "What is the name of Mickey Mouse's dog?",
     "answer": "Pluto",
+    "choices: ["Max", "Goofy", "Pluto", "Figaro"],
     "category": "Characters"
   }
 ]
