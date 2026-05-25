@@ -2,6 +2,7 @@
   {
     "question": "In what country is the kingdom of Arendelle, from Frozen, inspired by?",
     "answer": "Norway",
+    "Choices": ["Sweden", "Iceland", "Norway", "Hawaii"],
     "category": "Geography"
   },
   {
@@ -23,5 +24,10 @@
     "question": "Which Asian country is the setting for Mulan?",
     "answer": "China",
     "category": "Geography"
+  },
+  {
+    "question": "What is the name of Mickey Mouse's dog?",
+    "answer": "Pluto",
+    "category": "Characters"
   }
 ]

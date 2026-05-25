@@ -84,15 +84,31 @@ function shuffleArray(arr) {
 }
 
 function showMultipleChoice() {
-  const correct = filteredData[currentIndex];
-  const options = [correct];
+  const item = filteredData[currentIndex];
 
-  // pick 3 random other questions as wrong answers
-  const others = triviaData.filter(q => q !== correct);
-  shuffleArray(others)
-    .slice(0, 3)
-    .forEach(q => options.push(q));
+  let options;
 
+  // If the question has custom choices, use them
+  if (item.choices && Array.isArray(item.choices)) {
+    options = item.choices.map(choice => ({
+      answer: choice,
+      isCorrect: choice === item.answer
+    }));
+  } else {
+    // Otherwise fall back to your existing random-choice logic
+    const correct = item;
+    const randomWrong = triviaData
+      .filter(q => q !== correct)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3);
+
+    options = [
+      { answer: correct.answer, isCorrect: true },
+      ...randomWrong.map(q => ({ answer: q.answer, isCorrect: false }))
+    ];
+  }
+
+  // Shuffle the final options
   const shuffled = shuffleArray(options);
 
   mcContainer.innerHTML = "";
@@ -103,13 +119,15 @@ function showMultipleChoice() {
     const btn = document.createElement("button");
     btn.className = "mc-option";
     btn.textContent = opt.answer;
+
     btn.addEventListener("click", () => {
-      if (opt === correct) {
+      if (opt.isCorrect) {
         btn.classList.add("correct");
       } else {
         btn.classList.add("incorrect");
       }
     });
+
     mcContainer.appendChild(btn);
   });
 }
