@@ -32,7 +32,7 @@
   {
     "question": "What is the name of Mickey Mouse's dog?",
     "answer": "Pluto",
-    "choices: ["Max", "Goofy", "Pluto", "Figaro"],
+    "choices": ["Max", "Goofy", "Pluto", "Figaro"],
     "category": "Characters"
   }
 ]
