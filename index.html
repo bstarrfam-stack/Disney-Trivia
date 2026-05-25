@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Disney Trivia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Disney Trivia</h1>
+      <p class="subtitle">Family Game Night Edition</p>
+    </header>
+
+    <section class="controls">
+      <div class="mode-toggle">
+        <button id="mode-flash" class="mode-button active">Flash Card</button>
+        <button id="mode-mc" class="mode-button">Multiple Choice</button>
+      </div>
+
+      <div class="category-select">
+        <label for="category">Category:</label>
+        <select id="category">
+          <option value="all">All Categories</option>
+        </select>
+      </div>
+
+      <div class="utility-buttons">
+        <button id="btn-prev">⟵ Prev</button>
+        <button id="btn-next">Next ⟶</button>
+        <button id="btn-random">Shuffle ✨</button>
+      </div>
+    </section>
+
+    <main class="card-area">
+      <div class="card" id="card">
+        <div class="card-question" id="question"></div>
+
+        <div id="flashcard-answer" class="card-answer hidden"></div>
+
+        <div id="mc-options" class="mc-options hidden"></div>
+
+        <button id="btn-reveal" class="reveal-button">Reveal Answer</button>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <div id="progress"></div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

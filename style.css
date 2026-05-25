@@ -1,0 +1,229 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #3b5bdb 0, #1c1c3c 45%, #050515 100%);
+  color: #f8f4ff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.app-header h1 {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffe066;
+  text-shadow: 0 0 10px rgba(255, 224, 102, 0.7);
+}
+
+.subtitle {
+  color: #d0c4ff;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.mode-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.mode-button {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f8f4ff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.mode-button.active {
+  background: linear-gradient(135deg, #ff922b, #ffd43b);
+  color: #2b1b00;
+  box-shadow: 0 0 10px rgba(255, 212, 59, 0.7);
+}
+
+.mode-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.category-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.category-select select {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #f8f4ff;
+}
+
+.utility-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.utility-buttons button {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #f8f4ff;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.utility-buttons button:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+.card-area {
+  margin-top: 10px;
+}
+
+.card {
+  background: radial-gradient(circle at top left, #4c6ef5 0, #364fc7 40%, #1c1c3c 100%);
+  border-radius: 24px;
+  padding: 24px 20px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(255, 224, 102, 0.6), transparent 70%);
+  opacity: 0.7;
+}
+
+.card-question {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-answer {
+  font-size: 1rem;
+  margin-top: 8px;
+  color: #ffe8a1;
+  position: relative;
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+.mc-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.mc-option {
+  border-radius: 999px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-align: left;
+  transition: background 0.15s, transform 0.1s, border-color 0.15s;
+}
+
+.mc-option:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.mc-option.correct {
+  border-color: #69db7c;
+  background: rgba(105, 219, 124, 0.18);
+}
+
+.mc-option.incorrect {
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.18);
+}
+
+.reveal-button {
+  margin-top: 18px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #ff922b, #ffd43b);
+  color: #2b1b00;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  box-shadow: 0 0 12px rgba(255, 212, 59, 0.7);
+  position: relative;
+  z-index: 1;
+}
+
+.reveal-button:hover {
+  filter: brightness(1.05);
+}
+
+.app-footer {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #d0c4ff;
+}
+
+@media (max-width: 700px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .utility-buttons {
+    justify-content: center;
+  }
+}
