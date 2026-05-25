@@ -34,5 +34,11 @@
     "answer": "Pluto",
     "choices": ["Max", "Goofy", "Pluto", "Figaro"],
     "category": "Characters"
+  },
+  {
+    "question": "What is the name of Ariel’s best fish friend?",
+    "answer": "Flounder",
+    "choices": ["Scuttle", "Sebastian", "Flounder", "Guppy"],
+    "category": "Characters"
   }
 ]
