@@ -1,54 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Disney Trivia</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Disney Trivia</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#d00000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #f6f6f6;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+    }
+    h1 {
+        color: #d00000;
+        margin-bottom: 10px;
+    }
+    select, button {
+        padding: 12px 18px;
+        font-size: 18px;
+        margin: 10px;
+        border-radius: 10px;
+        border: none;
+    }
+    #startBtn {
+        background: #d00000;
+        color: white;
+        cursor: pointer;
+    }
+    .question {
+        font-size: 22px;
+        margin: 20px 0;
+    }
+    .answerBtn {
+        display: block;
+        width: 90%;
+        margin: 10px auto;
+        padding: 14px;
+        font-size: 18px;
+        border-radius: 10px;
+        border: 2px solid #d00000;
+        background: white;
+        cursor: pointer;
+    }
+    .answerBtn.correct {
+        background: #4caf50;
+        color: white;
+        border-color: #4caf50;
+    }
+    .answerBtn.wrong {
+        background: #d00000;
+        color: white;
+        border-color: #d00000;
+    }
+    #nextBtn {
+        padding: 12px 18px;
+        font-size: 18px;
+        background: #007aff;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        margin-top: 20px;
+        display: none;
+    }
+</style>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js");
+  });
+}
+</script>
 </head>
+
 <body>
-  <div class="app-container">
-    <header class="app-header">
-      <h1>Disney Trivia</h1>
-      <p class="subtitle">Family Game Night Edition</p>
-    </header>
 
-    <section class="controls">
-      <div class="mode-toggle">
-        <button id="mode-flash" class="mode-button active">Flash Card</button>
-        <button id="mode-mc" class="mode-button">Multiple Choice</button>
-      </div>
+<h1>Disney Trivia</h1>
 
-      <div class="category-select">
-        <label for="category">Category:</label>
-        <select id="category">
-          <option value="all">All Categories</option>
-        </select>
-      </div>
+<!-- CATEGORY SELECT -->
+<select id="categorySelect">
+    <option value="">Choose a category</option>
+    <option value="movies">Movies</option>
+    <option value="parks">Parks</option>
+    <option value="characters">Characters</option>
+</select>
 
-      <div class="utility-buttons">
-        <button id="btn-prev">⟵ Prev</button>
-        <button id="btn-next">Next ⟶</button>
-        <button id="btn-random">Shuffle ✨</button>
-      </div>
-    </section>
+<!-- MOVIE SORT SELECT -->
+<select id="movieSort">
+    <option value="">Sort by Movie</option>
+</select>
 
-    <main class="card-area">
-      <div class="card" id="card">
-        <div class="card-question" id="question"></div>
+<button id="startBtn">Start Game</button>
 
-        <div id="flashcard-answer" class="card-answer hidden"></div>
+<div id="gameArea"></div>
+<button id="nextBtn">Next Question</button>
 
-        <div id="mc-options" class="mc-options hidden"></div>
+<script>
+/* -------------------------
+   QUESTION DATA WITH MOVIE TAGS
+-------------------------- */
+const questions = {
+    movies: [
+        {
+            movie: "The Lion King",
+            q: "What year was The Lion King released?",
+            answers: ["1992", "1994", "1996", "1998"],
+            correct: 1
+        },
+        {
+            movie: "Frozen",
+            q: "Which Disney movie features the song 'Let It Go'?",
+            answers: ["Frozen", "Moana", "Tangled", "Brave"],
+            correct: 0
+        }
+    ],
+    parks: [
+        {
+            movie: "Disneyland",
+            q: "What year did Disneyland open?",
+            answers: ["1950", "1955", "1960", "1965"],
+            correct: 1
+        },
+        {
+            movie: "Magic Kingdom",
+            q: "Which park has Cinderella Castle?",
+            answers: ["Disneyland", "Epcot", "Magic Kingdom", "Animal Kingdom"],
+            correct: 2
+        }
+    ],
+    characters: [
+        {
+            movie: "Dumbo",
+            q: "What kind of animal is Dumbo?",
+            answers: ["Mouse", "Elephant", "Bear", "Dog"],
+            correct: 1
+        },
+        {
+            movie: "Mickey Mouse",
+            q: "Who is Mickey Mouse’s longtime girlfriend?",
+            answers: ["Daisy", "Minnie", "Clarabelle", "Wendy"],
+            correct: 1
+        }
+    ]
+};
 
-        <button id="btn-reveal" class="reveal-button">Reveal Answer</button>
-      </div>
-    </main>
+let currentCategory = "";
+let currentIndex = 0;
 
-    <footer class="app-footer">
-      <div id="progress"></div>
-    </footer>
-  </div>
+/* -------------------------
+   POPULATE MOVIE LIST
+-------------------------- */
+function populateMovieList() {
+    const movieSet = new Set();
 
-  <script src="app.js"></script>
+    for (const category in questions) {
+        questions[category].forEach(q => {
+            if (q.movie) movieSet.add(q.movie);
+        });
+    }
+
+    const movieSort = document.getElementById("movieSort");
+    movieSet.forEach(movie => {
+        const opt = document.createElement("option");
+        opt.value = movie;
+        opt.textContent = movie;
+        movieSort.appendChild(opt);
+    });
+}
+populateMovieList();
+
+/* -------------------------
+   START GAME BY CATEGORY
+-------------------------- */
+document.getElementById("startBtn").onclick = () => {
+    currentCategory = document.getElementById("categorySelect").value;
+    if (!currentCategory) return alert("Please choose a category first!");
+    currentIndex = 0;
+    loadQuestion();
+};
+
+/* -------------------------
+   LOAD QUESTION
+-------------------------- */
+function loadQuestion() {
+    const gameArea = document.getElementById("gameArea");
+    const qObj = questions[currentCategory][currentIndex];
+
+    gameArea.innerHTML = `
+        <div class="question">${qObj.q}</div>
+        ${qObj.answers.map((a, i) =>
+            `<button class="answerBtn" onclick="checkAnswer(${i})">${a}</button>`
+        ).join("")}
+    `;
+
+    document.getElementById("nextBtn").style.display = "none";
+}
+
+/* -------------------------
+   CHECK ANSWER
+-------------------------- */
+function checkAnswer(i) {
+    const qObj = questions[currentCategory][currentIndex];
+    const buttons = document.querySelectorAll(".answerBtn");
+
+    buttons.forEach((btn, index) => {
+        if (index === qObj.correct) btn.classList.add("correct");
+        else if (index === i) btn.classList.add("wrong");
+        btn.disabled = true;
+    });
+
+    document.getElementById("nextBtn").style.display = "block";
+}
+
+/* -------------------------
+   NEXT QUESTION
+-------------------------- */
+document.getElementById("nextBtn").onclick = () => {
+    currentIndex++;
+    if (currentIndex >= questions[currentCategory].length) {
+        document.getElementById("gameArea").innerHTML =
+            "<h2>You finished the category!</h2>";
+        document.getElementById("nextBtn").style.display = "none";
+    } else {
+        loadQuestion();
+    }
+};
+
+/* -------------------------
+   FILTER BY MOVIE
+-------------------------- */
+document.getElementById("movieSort").onchange = () => {
+    const selectedMovie = document.getElementById("movieSort").value;
+    if (!selectedMovie) return;
+
+    const filtered = [];
+
+    for (const category in questions) {
+        questions[category].forEach(q => {
+            if (q.movie === selectedMovie) filtered.push(q);
+        });
+    }
+
+    currentCategory = "movieFiltered";
+    questions[currentCategory] = filtered;
+    currentIndex = 0;
+
+    loadQuestion();
+};
+</script>
+
 </body>
 </html>
