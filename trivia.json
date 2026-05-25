@@ -3,77 +3,77 @@
     "question": "In what country is the kingdom of Arendelle, from Frozen, inspired by?",
     "answer": "Norway",
     "choices": ["Sweden", "Iceland", "Norway", "Hawaii"],
-    "category": "Geography"
+    "category": "Geography",
     "movie": "Frozen"
   },
   {
     "question": "What U.S. state is the setting for Lilo & Stitch?",
     "answer": "Hawaii",
     "choices": ["California", "Hawaii", "New York", "Florida"],
-    "category": "Geography"
+    "category": "Geography",
     "movie": "Lilo & Stitch"
   },
   {
     "question": "Which real-world city inspired the design of Ratatouille's setting?",
     "answer": "Paris",
     "choices": ["Paris", "Florence", "Beijing", "London"],
-    "category": "Geography"
+    "category": "Geography",
     "movie": "Ratatouille"
   },
   {
     "question": "Which Disney Princess movie is set in New Orleans?",
     "answer": "The Princess and the Frog",
     "choices": ["Sleeping Beauty", "Brave", "The Princess and the Frog", "Tangled"],
-    "category": "Geography"
+    "category": "Geography",
     "movie": "The Princess and The Frog"
   },
   {
     "question": "Which Asian country is the setting for Mulan?",
     "answer": "China",
     "choices": ["South Korea", "Vietnam", "Japan", "China"],
-    "category": "Geography"
+    "category": "Geography",
     "movie": "Mulan"
   },
   {
     "question": "What is the name of Mickey Mouse's dog?",
     "answer": "Pluto",
     "choices": ["Max", "Goofy", "Pluto", "Figaro"],
-    "category": "Characters"
+    "category": "Characters",
     "movie": "General"
   },
   {
     "question": "What is the name of Ariel’s best fish friend?",
     "answer": "Flounder",
     "choices": ["Scuttle", "Sebastian", "Flounder", "Guppy"],
-    "category": "Characters"
+    "category": "Characters",
     "movie": "The Little Mermaid"
   },
   {
-  "question": "In The Little Mermaid, what are the names of Ursula's pet eels?",
-  "answer": "Flotsam and Jetsam",
-  "choices": ["Simon and Garfunkel", "Flotsam and Jetsam", "Seals and Croft", "Salt and Pepper"],
-  "category": "Characters"
-  "movie": "The Little Mermaid"
+    "question": "In The Little Mermaid, what are the names of Ursula's pet eels?",
+    "answer": "Flotsam and Jetsam",
+    "choices": ["Simon and Garfunkel", "Flotsam and Jetsam", "Seals and Croft", "Salt and Pepper"],
+    "category": "Characters",
+    "movie": "The Little Mermaid"
   },
-{
-  "question": "Who are Hercules's two shapeshifting sidekicks?",
-  "answer": "Pain and Panic",
-  "choices": ["Feast and Famine", "Greed and Envy", "Fear and Loathing", "Pain and Panic"],
-  "category": "Characters"
-  "movie": "Hercules"
-},
-{
-  "question": "In Mulan, what is the name of the red dragon sidekick?",
-  "answer": "Mushu",
-  "choices": ["Pascal", "Abu", "Mushu", "Bruni"],
-  "category": "Characters"
-  "movie": "Mulan"
-},
-{
-  "question": "In the movie Bambi, what kind of animal is Thumper?",
-  "answer": "Rabbit",
-  "choices": ["Skunk", "Bird", "Raccoon", "Rabbit"],
-  "category": "Characters"
-  "movie": "Bambi"
-}
+  {
+    "question": "Who are Hercules's two shapeshifting sidekicks?",
+    "answer": "Pain and Panic",
+    "choices": ["Feast and Famine", "Greed and Envy", "Fear and Loathing", "Pain and Panic"],
+    "category": "Characters",
+    "movie": "Hercules"
+  },
+  {
+    "question": "In Mulan, what is the name of the red dragon sidekick?",
+    "answer": "Mushu",
+    "choices": ["Pascal", "Abu", "Mushu", "Bruni"],
+    "category": "Characters",
+    "movie": "Mulan"
+  },
+  {
+    "question": "In the movie Bambi, what kind of animal is Thumper?",
+    "answer": "Rabbit",
+    "choices": ["Skunk", "Bird", "Raccoon", "Rabbit"],
+    "category": "Characters",
+    "movie": "Bambi"
+  }
 ]
