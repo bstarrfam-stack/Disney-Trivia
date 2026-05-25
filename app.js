@@ -82,7 +82,6 @@ function shuffleArray(arr) {
   }
   return a;
 }
-
 function showMultipleChoice() {
   const item = filteredData[currentIndex];
 
@@ -131,6 +130,7 @@ function showMultipleChoice() {
     mcContainer.appendChild(btn);
   });
 }
+
 
 revealBtn.addEventListener("click", () => {
   if (mode === "flash") {
