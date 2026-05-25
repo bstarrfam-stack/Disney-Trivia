@@ -42,7 +42,7 @@
     "movie": "General"
   },
   {
-    "question": "What is the name of Ariel’s best fish friend?",
+    "question": "What is the name of Ariel's best fish friend?",
     "answer": "Flounder",
     "choices": ["Scuttle", "Sebastian", "Flounder", "Guppy"],
     "category": "Characters",
