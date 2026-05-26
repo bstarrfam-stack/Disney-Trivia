@@ -129,63 +129,63 @@
     "question": "In Zootopia, what is the name of Judy’s hometown?",
     "answer": "Bunnyburrow",
     "choices": ["Bunnyfield", "Carrotville", "Bunnyburrow", "Hoppytown"],
-    "category": "Geography"
+    "category": "Geography",
     "movie": "Zootopia"
   },
   {
     "question": "In Beauty and the Beast what is the name of Belle's horse?",
     "answer": "Phillipe",
     "choices": ["Phillipe", "Antoine", "LeFleur", "Gerard"],
-    "category": "Characters"
+    "category": "Characters",
     "movie": "Beauty and the Beast"
   },
   {
     "question": "What is the name of the bear in The Jungle Book?",
     "answer": "Baloo",
     "choices": ["Shere Khan", "Baloo", "Mowgli", "Bagheera"],
-    "category": "Characters"
+    "category": "Characters",
     "movie": "Jungle Book"
   },
   {
     "question": "In Cars, what is the name of the town where Lightning McQueen gets stuck?",
     "answer": "Radiator Springs",
     "choices": ["Motorville", "Radiator Springs", "Gear Gulch", "Auto Town"],
-    "category": "Geography"
+    "category": "Geography",
     "movie": "Cars"
   },
   {
     "question": "In Rapunzel, what is the name of the Chameleon sidekick?",
     "answer": "Pascal",
     "choices": ["Mozart", "Ranoir", "Pascal", "Matisse"],
-    "category": "Characters"
+    "category": "Characters",
     "movie": "Tangled"
   },
   {
     "question": "In A Bug’s Life, what kind of insect is the villain?",
     "answer": "Grasshopper",
     "choices": ["Beetle", "Wasp", "Grasshopper", "Praying Mantis"],
-    "category": "Villains"
+    "category": "Characters",
     "movie": "A Bug's Life"
   },
   {
     "question": "Of Bambi, Cinderella, Dumbo and Pinocchio, which is the oldest Disney movie?",
     "answer": "Pinocchio",
     "choices": ["Pinocchio", "Cinderella", "Dumbo", "Bambi"],
-    "category": "Miscellaneous"
+    "category": "Miscellaneous",
     "movie": "General Disney Trivia"
   },
   {
     "question": "Which of the seven dwarves never says a word in the movie Snow White?",
     "answer": "Dopey",
     "choices": ["Bashful", "Sneezey", "Sleepy", "Dopey"],
-    "category": "Characters"
+    "category": "Characters",
     "movie": "Snow White"
   },
   {
     "question": "Although it is never referenced in the movie, what is the name of the Prince who awakens Snow White from her slumber?",
     "answer": "Prince Florien",
     "choices": ["Prince Abbott", "Prince Cedric", "Prince Florien", "Prince Phillip"],
-    "category": "Characters"
+    "category": "Characters",
     "movie": "Snow White"
   }
 ]
